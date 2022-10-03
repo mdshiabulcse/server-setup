@@ -1,0 +1,71 @@
+ubuntu server setup link===== https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04
+
+
+nginx install in ubuntu ==========
+
+
+==>sudo apt update
+==>sudo apt install nginx
+<======check ufw list===>
+==>sudo ufw app list
+
+<==========mysql install ====>
+
+
+==>sudo apt install mysql-server
+==>sudo mysql_secure_installation
+
+
+
+
+======= mysql password reset======
+https://www.tecmint.com/fix-mysql-error-1819-hy000/#:~:text=To%20resolve%20the%20MySQL%20ERROR,the%20password%20validation%20policy%20level.
+
+https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password-on-ubuntu-20-04?utm_medium=affiliates&utm_source=impact&utm_campaign=357605&utm_content=97660149169c47df9d0fd1f0e5ccc9ea&irgwc=1&irclickid=S1Oy34XdoxyIWg0SSzTcvSG8UkDQ2%3ARgDRSnxI0
+
+
+==>
+mysql --version
+sudo systemctl stop mysql
+
+sudo mysql -u root
+
+sudo systemctl edit mysql
+
+service===>
+[Service]
+ExecStart=
+ExecStart=/usr/sbin/mysqld --skip-grant-tables --skip-networking
+
+sudo systemctl daemon-reload
+sudo systemctl start mysql
+
+
+
+====variable show after change=====
+sudo mysql -u root
+
+mysql> SHOW VARIABLES LIKE 'validate_password%';
+
+mysql> SET GLOBAL validate_password_policy=LOW;
+or
+mysql> SET GLOBAL validate_password_policy=0;
+
+lenth set==> 
+mysql> SET GLOBAL validate_password.length = 4;
+mysql> SET GLOBAL validate_password.policy=LOW;
+
+
+mysql>FLUSH PRIVILEGES;
+mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'new_password';
+
+
+For MySQL, remove the modified systemd configuration:
+
+sudo systemctl revert mysql
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart mysql
+
+mysql -u root -p
