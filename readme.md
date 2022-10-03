@@ -4,7 +4,7 @@ ubuntu server setup link===== https://www.digitalocean.com/community/tutorials/h
 nginx install in ubuntu ==========
 
 
-sudo apt update
-sudo apt install nginx
+==>sudo apt update
+==>sudo apt install nginx
 <================check ufw list
-sudo ufw app list
+==>sudo ufw app list
