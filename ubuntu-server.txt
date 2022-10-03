@@ -9,7 +9,7 @@ nginx install in ubuntu ==========
 <======check ufw list===>
 ==>sudo ufw app list
 
-<==========mysql install ====>
+<=======================mysql install ===============================>
 
 
 ==>sudo apt install mysql-server
@@ -69,3 +69,15 @@ sudo systemctl daemon-reload
 sudo systemctl restart mysql
 
 mysql -u root -p
+
+SHOW DATABASES;
+
+table use====>
+USE playground;
+
+CREATE DATABASE playground;
+
+
+<=========laravel file isntall=============>
+
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-laravel-application-with-nginx-on-ubuntu-16-04?utm_medium=affiliates&utm_source=impact&utm_campaign=357605&utm_content=97660149169c47df9d0fd1f0e5ccc9ea&irgwc=1&irclickid=S1Oy34XdoxyIWg0SSzTcvSG8UkDQzjwgDRSnxI0
