@@ -76,8 +76,47 @@ table use====>
 USE playground;
 
 CREATE DATABASE playground;
+<==================exmple test server=================>
 
+https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04?utm_medium=affiliates&utm_source=impact&utm_campaign=357605&utm_content=97660149169c47df9d0fd1f0e5ccc9ea&irgwc=1&irclickid=S1Oy34XdoxyIWg0SSzTcvSG8UkDQykXoDRSnxI0
 
 <=========laravel file isntall=============>
 
 https://www.digitalocean.com/community/tutorials/how-to-deploy-a-laravel-application-with-nginx-on-ubuntu-16-04?utm_medium=affiliates&utm_source=impact&utm_campaign=357605&utm_content=97660149169c47df9d0fd1f0e5ccc9ea&irgwc=1&irclickid=S1Oy34XdoxyIWg0SSzTcvSG8UkDQzjwgDRSnxI0
+
+
+<===========firewall status active======>
+
+sudo ufw enable
+
+
+Command may disrupt existing ssh connections. Proceed with operation (y|n)?
+
+Firewall is active and enabled on system startup
+
+
+ sudo ufw status =======check
+
+Status: active
+
+To                         Action      From
+--                         ------      ----
+Nginx HTTP                 ALLOW       Anywhere
+Nginx HTTP (v6)            ALLOW       Anywhere (v6)
+
+
+
+
+
+sudo ufw disable
+Firewall stopped and disabled on system startup
+
+ssh open server install for remote connection ====
+
+sudo apt update
+
+sudo apt install openssh-server
+sudo systemctl status ssh 
+sudo ufw allow ssh
+
+ssh -v
