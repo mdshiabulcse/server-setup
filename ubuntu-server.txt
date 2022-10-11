@@ -125,3 +125,38 @@ ssh -v
 sudo update-alternatives --set php /usr/bin/php7.0
 sudo update-alternatives --set phar /usr/bin/phar7.0
 sudo update-alternatives --set phar.phar /usr/bin/phar.phar7.0
+
+
+
+<===========write permission command==============>
+
+sudo chown -R www-data:www-data /var/www/satkhira/diqcare_1.0.local/apps/cache
+
+
+
+<==========software file upload and setup command=============>
+
+sudo mkdir -p /var/www/html/quickstart
+
+sudo chown sammy:sammy /var/www/html/quickstart
+
+cd /var/www/html/quickstart
+git clone https://github.com/laravel/quickstart-basic .
+
+composer install
+
+sudo nano /var/www/html/quickstart/.env
+
+sudo chgrp -R www-data storage bootstrap/cache
+
+sudo chmod -R ug+rwx storage bootstrap/cache
+
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example.com
+sudo nano /etc/nginx/sites-available/example.com
+
+sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+
+sudo systemctl reload nginx
+sudo nginx -t
+
+sudo systemctl restart nginx
