@@ -160,3 +160,12 @@ sudo systemctl reload nginx
 sudo nginx -t
 
 sudo systemctl restart nginx
+
+
+<===============my sql database import ==========>
+
+mysql -u root -p
+
+CREATE DATABASE new_database;
+
+mysql -u username -p new_database < data-dump.sql
