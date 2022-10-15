@@ -151,6 +151,8 @@ sudo chgrp -R www-data storage bootstrap/cache
 
 sudo chmod -R ug+rwx storage bootstrap/cache
 
+lstravellist
+
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example.com
 sudo nano /etc/nginx/sites-available/example.com
 
