@@ -147,11 +147,17 @@ composer install
 
 sudo nano /var/www/html/quickstart/.env
 
+
+sudo mv ~/travellist /var/www/travellist
+
 sudo chgrp -R www-data storage bootstrap/cache
 
 sudo chmod -R ug+rwx storage bootstrap/cache
 
-lstravellist
+sudo chown -R www-data.www-data /var/www/travellist/storage
+sudo chown -R www-data.www-data /var/www/travellist/bootstrap/cache
+
+<=================site setup===========>
 
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example.com
 sudo nano /etc/nginx/sites-available/example.com
