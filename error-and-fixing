@@ -1,0 +1,8 @@
+Error: 413 “Request Entity Too Large” in Nginx with “client_max_body_size” / Changes in Nginx config file.
+
+
+
+sudo nano /etc/nginx/nginx.conf
+client_max_body_size 100M;
+
+sudo service nginx restart
