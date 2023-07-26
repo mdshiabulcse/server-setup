@@ -121,6 +121,8 @@ sudo ufw allow ssh
 
 ssh -v
 =================php version change=================
+sudo apt-get install php7.3-fpm
+sudo systemctl status php7.3-fpm
 
 sudo update-alternatives --set php /usr/bin/php7.0
 sudo update-alternatives --set phar /usr/bin/phar7.0
