@@ -1,0 +1,8 @@
+SELECT list is not in GROUP BY clause and contains nonaggregated column 'shop_deh_db.product.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by ubuntu nginx server
+
+
+
+
+
+
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
