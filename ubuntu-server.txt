@@ -10,7 +10,7 @@ nginx install in ubuntu ==========
 ==>sudo ufw app list
 
 <=======================mysql install ===============================>
-
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
 
 ==>sudo apt install mysql-server
 ==>sudo mysql_secure_installation
