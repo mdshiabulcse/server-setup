@@ -276,3 +276,13 @@ sudo service php-fpm start <- start it
 sudo service php-fpm stop <- stop it
 sudo service php-fpm restart <- restart it
 sudo service php-fpm reload <- reload it
+
+or
+
+sudo service php5-fpm start
+sudo service php5-fpm stop
+sudo service php5-fpm restart <- restart it
+sudo service php5-fpm reload <- reload it
+
+show variables like 'max_allowed_packet';
+SET GLOBAL max_allowed_packet=1073741824;
