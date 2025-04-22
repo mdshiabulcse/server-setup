@@ -1,1 +1,23 @@
 
+//vue js file DockerFile start 
+
+FROM node:16-alpine //this file node js version wise 
+
+WORKDIR /app  //folder struckture 
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080  //server run port
+
+CMD ["npm", "run", "serve"]  //server run command 
+
+
+//vue js file DockerFile end
+
+<-----------for run purpose use command--------->
+
+docker compose build
