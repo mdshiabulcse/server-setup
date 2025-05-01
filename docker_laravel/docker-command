@@ -1,0 +1,139 @@
+my-laravel-app/
+├── app/
+├── config/
+├── database/
+├── docker/
+│   └── nginx/
+│       └── default.conf
+├── public/
+├── routes/
+├── storage/
+├── Dockerfile    <-- (new)
+├── docker-compose.yml
+└── ...
+
+
+
+
+DB_CONNECTION=mysql
+DB_HOST=mysql-db
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_password
+  
+
+
+🧩 Step 4: Create Nginx config
+Create docker/nginx/default.conf:
+
+nginx
+Copy
+Edit
+server {
+    listen 80;
+    index index.php index.html;
+    server_name localhost;
+    root /var/www/html/public;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass app:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $realpath_root;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+✅ Important:
+
+fastcgi_pass app:9000; (because your PHP container is named app in docker-compose)
+
+Serving from /public
+
+🧩 Step 5: Setup .env for Laravel
+In your Laravel project, check .env:
+
+dotenv
+Copy
+Edit
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+APP_DEBUG=true
+APP_URL=http://localhost:8080
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=mysql-db
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_password
+✅ Important:
+
+DB_HOST=mysql-db (service name, not 127.0.0.1)
+
+APP_URL=http://localhost:8080
+
+🧩 Step 6: Build and Run
+Now run:
+
+docker-compose up -d --build
+  
+It will:
+
+Build your PHP container
+
+Start MySQL
+
+Start Nginx
+
+Connect everything
+
+✅ Wait 1–2 mins for MySQL to initialize.
+
+🧩 Step 7: Install Laravel (optional)
+If you didn't install Laravel yet:
+
+  
+docker exec -it backend-pos-app bash
+composer create-project laravel/laravel .
+exit
+Then:
+
+
+docker-compose restart
+✅ If Laravel already exists, just skip.
+
+🧩 Step 8: Set permissions inside container
+Run:
+
+docker exec -it backend-pos-app bash
+chown -R www-data:www-data /var/www/html
+chmod -R 775 storage bootstrap/cache
+exit
+✅ Necessary for Laravel to work properly.
+
+🧩 Step 9: Visit the site 🎉
+Open your browser:
+
+
+http://localhost:8080
+✅ You should now see the Laravel 12 welcome page!
+
+🚀 Bonus Commands
+Command	Purpose
+docker-compose ps	See running containers
+docker-compose logs	See full logs
+docker exec -it backend-pos-app bash	SSH into PHP container
+docker-compose down	Stop all containers
+docker-compose up -d	Start all containers
